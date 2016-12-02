@@ -1,11 +1,8 @@
 package main;
 
-import agh.cs.constitution.Reader;
+import agh.cs.constitution.Parser;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.net.URL;
 
 /**
  * Created by Joanna on 2016-11-30.
@@ -16,14 +13,18 @@ public class ConstitutionStart {
         try{
 
             String path="C:\\Users\\Joanna\\Documents\\Konstytucja.txt";
-            Reader a = new Reader(path);
-            a.read(); //moze lepiej zeby zwracal obiekt Constitution?
+            Parser a = new Parser(path);
+            a.parse(); //moze lepiej zeby zwracal obiekt Constitution?
 
             //a -> article; c-> chapter; zakres do oczytu
 
+
+
         }catch (IOException e) {
             e.printStackTrace();
+
         }
 
+        //wyodrebnienie klasy do wczytywanie z linii polecen
     }
 }
