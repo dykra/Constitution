@@ -6,6 +6,7 @@ import java.io.IOException;
 /**
  * Created by Joanna on 2016-12-02.
  */
+
 public class Scanner {
     private boolean chapterAdded;
     private  int chapterNb;
@@ -19,39 +20,32 @@ public class Scanner {
         this.currentArticle= 0;
     }
 
-    //class which should make objects from txt file
+    public void lineToObject(Constitution constitution,String sCurrentLine) {
 
-    public void linetoObject(Constitution constitution,String sCurrentLine) {
-
-        if (chapterNb==0 && chapterAdded==false){
-            //ustawiamy preambułę konstytucji
-            constitution.title.add(sCurrentLine);
-        }else if (sCurrentLine.startsWith("Rozdział")){
+        if (sCurrentLine.startsWith("Rozdział")) {
             chapterNb++;
-            chapterAdded= true;
-            currentArticle=0;
-            constitution.chapters.add(new Chapter(chapterNb,articleNb+1,sCurrentLine));
+            chapterAdded = true;
+            currentArticle = 0;
+            constitution.chapters.add(new Chapter(chapterNb, articleNb + 1, sCurrentLine));
             //co gdy rozdzial nie ma zadnego artykulu?
 
-        }else if (chapterAdded==true){
+        } else if (chapterAdded == true) {
             //ustawiamy tytul rozdziału np "prawa i obowiazki"
-            constitution.chapters.get(chapterNb-1).giveTitle(sCurrentLine);
-            chapterAdded=false;
-        }else if(sCurrentLine.startsWith("Art.")){
+            constitution.chapters.get(chapterNb - 1).giveTitle(sCurrentLine);
+            chapterAdded = false;
+        } else if (sCurrentLine.startsWith("Art.")) {
             articleNb++;
             currentArticle++;
-            constitution.chapters.get(chapterNb-1).articles.add(new Article(articleNb));
-            constitution.chapters.get(chapterNb-1).updateIndekxMax(articleNb);
-        }else {
+            constitution.chapters.get(chapterNb - 1).articles.add(new Article(articleNb));
+            constitution.chapters.get(chapterNb - 1).updateIndekxMax(articleNb);
+        } else if (currentArticle > 0) {
             //jestesmy w srodku artykulu
-            constitution.chapters.get(chapterNb-1).articles.get(currentArticle-1).subsections.add(sCurrentLine);
+            constitution.chapters.get(chapterNb - 1).articles.get(currentArticle - 1).subsections.add(sCurrentLine);
         }
-        System.out.println(sCurrentLine);
 
-    }
-
-
-    private void getTitle(){//do ustawiania tytulu rozdzialu
-
+        if (chapterNb == 0 && chapterAdded == false) {
+            //ustawiamy preambułę konstytucji
+            constitution.introduction.add(sCurrentLine);
+        }
     }
 }
