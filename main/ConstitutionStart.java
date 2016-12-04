@@ -1,5 +1,7 @@
 package main;
 
+import agh.cs.constitution.Constitution;
+import agh.cs.constitution.ParseInstructions;
 import agh.cs.constitution.Parser;
 
 import java.io.IOException;
@@ -9,22 +11,23 @@ import java.io.IOException;
  */
 public class ConstitutionStart {
     public static void main(String[] args) {
-
         try{
+            ParseInstructions instructions = new ParseInstructions();//a -> article; c-> chapter; zakres do oczytu
+            int instr[]= instructions.parseArguments(args);
+            Constitution C = new Parser(args[0]).parse(); //albo na void'a
+            if(instr[0]==1){
+                C.printChapter(instr[1]);
+            }else{
+                C.printArticle(instr[1],instr[2]);
+            }
 
-            String path="C:\\Users\\Joanna\\Documents\\Konstytucja.txt";
-            Parser a = new Parser(path);
-            a.parse(); //moze lepiej zeby zwracal obiekt Constitution?
-
-            //a -> article; c-> chapter; zakres do oczytu
-
-
-
+        }catch (IllegalArgumentException ex ){
+            System.out.print(ex.getMessage());
         }catch (IOException e) {
             e.printStackTrace();
-
+        }finally {
+            //zamkniecie pliku tez z try i catch
         }
-
-        //wyodrebnienie klasy do wczytywanie z linii polecen
     }
 }
+
