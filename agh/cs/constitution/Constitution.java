@@ -23,28 +23,40 @@ public class Constitution {
     }
 
     public void printArticle(int first, int last) {
-        int i=giveFirstChapter(first);
-        int j=giveLastChapter(last);
+        if (first < 0 ){
 
-        int tmp=0;
-        while( first > chapters.get(i).articles.get(tmp).number)
-            tmp++;
+            throw new IllegalArgumentException(first + "Podałes liczbę ujemną.");
+        }if (last < chapters.get(chapters.size() - 1).indeksMax) {
 
-        for(int k=i; k <=j ; k ++){
-            //l to wewnetrzny licznij a nie prawdziwego artykulu
-            for (int l=tmp; l < chapters.get(k).articles.size() && chapters.get(k).articles.get(l).number <= last; l ++){
-              chapters.get(k).articles.get(l).print();
+            int i = giveFirstChapter(first);
+            int j = giveLastChapter(last);
+
+            int tmp = 0;
+            while (first > chapters.get(i).articles.get(tmp).number)
+                tmp++;
+
+            for (int k = i; k <= j; k++) {
+                //l to wewnetrzny licznij a nie prawdziwego artykulu
+                for (int l = tmp; l < chapters.get(k).articles.size() && chapters.get(k).articles.get(l).number <= last; l++) {
+                    chapters.get(k).articles.get(l).print();
+                }
+                tmp = 0;
             }
-            tmp=0;
-        }
+        }else
+
+        throw new IllegalArgumentException(last + "Podałes artykuł spoza zakresu.");
     }
 
     private int giveFirstChapter(int first){
+
         int i=0;
         while ( first-1 > chapters.get(i).indeksMax){
             i++;
         }
     return i;}
+    public int getFirstChapter(int first){
+        return giveFirstChapter(first);
+    }
 
     private int giveLastChapter(int last){
         int j=0;
@@ -53,7 +65,16 @@ public class Constitution {
         }
     return j;}
 
+    public int getLastChapter(int last){
+        return giveLastChapter(last);
+    }
+
     public void printChapter(int number) {
-        chapters.get(number - 1).print(); //bo nr w tablicy od 0
+        if (number < 1)
+            throw new IllegalArgumentException(number + "  Podałes liczbę ujemną.");
+        if (number <= chapters.size())
+            chapters.get(number - 1).print(); //bo nr w tablicy od 0
+
+        else throw new IllegalArgumentException(number + "  Podałes numer większy niż zakres rozdziałów.");
     }
 }
