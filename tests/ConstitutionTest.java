@@ -1,8 +1,8 @@
 package tests;
 
 import static org.junit.Assert.*;
-import agh.cs.constitution.Constitution;
-import agh.cs.constitution.Parser;
+
+import agh.cs.constitution.*;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -36,6 +36,28 @@ public class ConstitutionTest {
                 "nad warunkami wykonywania pracy.\n"
         );
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void printArticleTest2() throws Exception {
+        Constitution C = new Constitution();
+        C.chapters.add(new Chapter(23,45,"123"));
+        C.printArticle(-1,3);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void printChapterTest2() throws Exception {
+        Constitution C = new Constitution();
+        C.chapters.add(new Chapter(1,1,"123"));
+        C.printChapter(-20);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void printChapterTest3() throws Exception {
+        Constitution C = new Constitution();
+        C.chapters.add(new Chapter(1,1,"123"));
+        C.printChapter(2374935);
+    }
+
 
     @Test
     public void printChapterTest() throws IOException {
@@ -251,5 +273,6 @@ public class ConstitutionTest {
                 "Rzeczypospolitej ulega zawieszeniu. Przepis art. 131 stosuje się odpowiednio.\n"
         );
     }
+
 
     }
