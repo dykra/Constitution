@@ -21,12 +21,9 @@ public class Article implements IConstitutionElement {
                 result+="Art. ";
                 result+=this.number;
                 result+=".\n";
-//pamietac zeby po Art. number wypisac jeszcze kropke -> (Art. 1.)
-              //  System.out.println("Art. "+this.number+ ".");
                 for (int i=0; i < subsections.size(); i ++) {
                         result=result+subsections.get(i);
                         result+="\n";
-                        //System.out.println(subsections.get(i));
                 }
         return result;}
 }

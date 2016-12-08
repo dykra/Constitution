@@ -49,7 +49,7 @@ public class ParseInstructions {
                     throw new IllegalArgumentException(args[1] + "Można wyświetlać tylko akapity i rozdziały,Bład argumentów");
             }
         }else
-            throw new IllegalArgumentException(args[1] + "Podano niewłasciwą ilosc argumentów");
+            throw new IllegalArgumentException("Podano niewłasciwą ilosc argumentów");
 
         return result;}
 

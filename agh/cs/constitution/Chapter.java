@@ -30,10 +30,8 @@ public class Chapter implements IConstitutionElement{
         res=res+titleWithRoman;
         res+="\n";
         res+=title+"\n";
-       // System.out.println(titleWithRoman);
-       // System.out.print(title+"\n");
+
         for (int i=0; i < articles.size(); i ++){
-           //articles.get(i).print();
             res+=articles.get(i).print();
         }
     return res;}

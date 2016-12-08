@@ -38,7 +38,6 @@ public class Constitution {
             for (int k = i; k <= j; k++) {
                 //l to wewnetrzny licznij a nie prawdziwego artykulu
                 for (int l = tmp; l < chapters.get(k).articles.size() && chapters.get(k).articles.get(l).number <= last; l++) {
-                    //chapters.get(k).articles.get(l).print();
                     result=result+chapters.get(k).articles.get(l).print();
                 }
                 tmp = 0;
