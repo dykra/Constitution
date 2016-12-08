@@ -25,13 +25,18 @@ public class Chapter implements IConstitutionElement{
     }
 
     @Override
-    public void print() {
-        System.out.println(titleWithRoman);
-        System.out.print(title+"\n");
+    public String print() {
+        String res= "";
+        res=res+titleWithRoman;
+        res+="\n";
+        res+=title+"\n";
+       // System.out.println(titleWithRoman);
+       // System.out.print(title+"\n");
         for (int i=0; i < articles.size(); i ++){
-           articles.get(i).print();
+           //articles.get(i).print();
+            res+=articles.get(i).print();
         }
-    }
+    return res;}
 
     public void updateIndekxMax(int indeksMax){
         this.indeksMax=indeksMax;

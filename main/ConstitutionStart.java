@@ -16,17 +16,15 @@ public class ConstitutionStart {
             int instr[]= instructions.parseArguments(args);
             Constitution C = new Parser(args[0]).parse(); //albo na void'a
             if(instr[0]==1){
-                C.printChapter(instr[1]);
+                System.out.println(C.printChapter(instr[1]));
             }else{
-                C.printArticle(instr[1],instr[2]);
+                System.out.println(C.printArticle(instr[1],instr[2]));
             }
 
         }catch (IllegalArgumentException ex ){
             System.out.print(ex.getMessage());
         }catch (IOException e) {
             e.printStackTrace();
-        }finally {
-            //zamkniecie pliku tez z try i catch
         }
     }
 }

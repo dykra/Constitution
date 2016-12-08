@@ -22,9 +22,9 @@ public class Constitution {
         }
     }
 
-    public void printArticle(int first, int last) {
+    public String printArticle(int first, int last) {
+        String result="";
         if (first < 0 ){
-
             throw new IllegalArgumentException(first + "Podałes liczbę ujemną.");
         }if (last < chapters.get(chapters.size() - 1).indeksMax) {
 
@@ -38,14 +38,15 @@ public class Constitution {
             for (int k = i; k <= j; k++) {
                 //l to wewnetrzny licznij a nie prawdziwego artykulu
                 for (int l = tmp; l < chapters.get(k).articles.size() && chapters.get(k).articles.get(l).number <= last; l++) {
-                    chapters.get(k).articles.get(l).print();
+                    //chapters.get(k).articles.get(l).print();
+                    result=result+chapters.get(k).articles.get(l).print();
                 }
                 tmp = 0;
             }
         }else
-
         throw new IllegalArgumentException(last + "Podałes artykuł spoza zakresu.");
-    }
+
+    return result;}
 
     private int giveFirstChapter(int first){
 
@@ -69,12 +70,14 @@ public class Constitution {
         return giveLastChapter(last);
     }
 
-    public void printChapter(int number) {
+    public String printChapter(int number) {
+        String res="";
         if (number < 1)
             throw new IllegalArgumentException(number + "  Podałes liczbę ujemną.");
         if (number <= chapters.size())
-            chapters.get(number - 1).print(); //bo nr w tablicy od 0
+            res+=chapters.get(number-1).print();
+            //chapters.get(number - 1).print(); //bo nr w tablicy od 0
 
         else throw new IllegalArgumentException(number + "  Podałes numer większy niż zakres rozdziałów.");
-    }
+    return res;}
 }

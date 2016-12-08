@@ -16,11 +16,17 @@ public class Article implements IConstitutionElement {
         }
 
         @Override
-        public void print() {
+        public String print() {
+                String result="";
+                result+="Art. ";
+                result+=this.number;
+                result+=".\n";
 //pamietac zeby po Art. number wypisac jeszcze kropke -> (Art. 1.)
-                System.out.println("Art. "+this.number+ ".");
+              //  System.out.println("Art. "+this.number+ ".");
                 for (int i=0; i < subsections.size(); i ++) {
-                        System.out.println(subsections.get(i));
+                        result=result+subsections.get(i);
+                        result+="\n";
+                        //System.out.println(subsections.get(i));
                 }
-        }
+        return result;}
 }
